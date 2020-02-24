@@ -87,7 +87,7 @@ The method should do all the validations as stated in rule 1.
 5. Once game has started, Handle multiple clicks on begin play.
 */
 function turnInfo(){
-ti = document.getElementById("turn_info");
+ti = document.getElementById("turn_info"); //Only want to write all this text once
 	var check = whose_move();
 	if(check == 1){
 		ti.innerHTML = "Turn for: " + "X".bold();
@@ -95,6 +95,8 @@ ti = document.getElementById("turn_info");
 	}
 	ti.innerHTML = "Turn for: " + "O".bold();
 }
+
+
 function disabledPlay(){
 	alert("Already started. Please reset play to start again.");
 }
@@ -133,6 +135,28 @@ Remember to set the strated flag as false
 
 */
 function reset_play(){
+	var temp = document.getElementById("player1_id");
+	var check = document.getElementById("player2_id");
+	var move = document.getElementById("move_text_id");
+	move.value = "";
+	temp.value = "";
+	check.value = "";
+	temp.disabled = false; //clear and enable all text boxes
+	check.disabled = false;
+	for(var i = 0; i < board_state.length; i++ ){
+		board_state[i] = -1; //reset board_state array
+	}
+	document.getElementById("A1").innerHTML = "A1";
+	document.getElementById("A2").innerHTML = "A2";
+	document.getElementById("A3").innerHTML = "A3";
+
+	document.getElementById("B1").innerHTML = "B1";
+	document.getElementById("B2").innerHTML = "B2"; //Reset text of all cells
+	document.getElementById("B3").innerHTML = "B3";
+
+	document.getElementById("C1").innerHTML = "C1";
+	document.getElementById("C2").innerHTML = "C2";
+	document.getElementById("C3").innerHTML = "C3";
 
 }
 
@@ -152,7 +176,76 @@ The method should do all the things as stated in rule 2.
 8. After all the moves have exhausted, you're not required to display any message. (It should be obvious to Reset play.)<br/>
 
 */
+function checkWinner(){
+	if(board_state[0] == board_state[1] && board_state[0] == board_state[2] && board_state[1] != -1){
+		return true;
+	}
+	if(board_state[3] == board_state[4] && board_state[3] == board_state[5] && board_state[3] != -1){
+		return true;
+	}
+	if(board_state[6] == board_state[7] && board_state[6] == board_state[8] && board_state[6] != -1){
+		return true;
+	}
+	if(board_state[0] == board_state[3] && board_state[0] == board_state[6] && board_state[0] != -1){
+		return true;
+	}
+	if(board_state[1] == board_state[4] && board_state[1] == board_state[7] && board_state[1] != -1){
+		return true;
+	}
+	if(board_state[2] == board_state[5] && board_state[8] == board_state[2] && board_state[2] != -1){
+		return true;
+	}
+	if(board_state[0] == board_state[4] && board_state[0] == board_state[8] && board_state[0] != -1){
+		return true;
+	}
+	if(board_state[2] == board_state[4] && board_state[2] == board_state[6] && board_state[2] != -1){
+		return true;
+	}
+	//Else 
+	return false;
+}
 function play() {
+	if(!game_started()){
+		alert("The game has not started.");
+		return;
+	}
+	var valid = false;
+	var text = document.getElementById("move_text_id");
+	var turnCheck = whose_move();
+	console.log(text.value);
+	for(var i = 0; i < table_ids.length; i++){
+	if(text.value == table_ids[i] && board_state[i] == -1){
+			valid = true;
+			board_state[i] = whose_move();
+		}
+	}
+	if(valid == false){ //Check if user input was valid
+		alert("Invalid Move!");
+	}
+	var cell = document.getElementById(String(text.value));
+
+	if(turnCheck == 1){
+		cell.innerHTML = "X";
+		if(checkWinner()){
+			alert("Win to player X");
+			reset_play();
+			return;
+		}
+		toggle_move();
+		turnInfo();
+
+	}
+	if(turnCheck == 0){
+		cell.innerHTML = "O";
+		if(checkWinner()){
+			alert("Win to player O");
+			reset_play();
+			return;
+		}
+		toggle_move();
+		turnInfo();
+	}
+
 
 }
 
