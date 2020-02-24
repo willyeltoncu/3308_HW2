@@ -86,39 +86,39 @@ The method should do all the validations as stated in rule 1.
 4. If all verification is successful, update the turn information on the page. (See the source code and image). And set the started flag to true.(this will help you track at any instant if the game is in start state or not.)
 5. Once game has started, Handle multiple clicks on begin play.
 */
+function turnInfo(){
+ti = document.getElementById("turn_info");
+	var check = whose_move();
+	if(check == 1){
+		ti.innerHTML = "Turn for: " + "X".bold();
+		return;
+	}
+	ti.innerHTML = "Turn for: " + "O".bold();
+}
+function disabledPlay(){
+	alert("Already started. Please reset play to start again.");
+}
 
 function begin_play(){
 var temp = document.getElementById("player1_id");
 var check = document.getElementById("player2_id")
 var turn_in = document.getElementById("turn_info");
-console.log(turn_in.innerHtml);
 
 if(isEmpty(temp.value) || isEmpty(check.value)){
 	alert("Two player game, both the fields are mandatory.");
 	started = false; //make sure game doesnt start
 	return;
 }
+//Disable text and add letter of their side to placeholder
 temp.value = temp.value + " (X)";
 check.value = check.value + " (O)";
 temp.disabled = true;
 check.disabled = true;
-var i = 0;
-while(i < 1){
-	var playernum = whose_move();
-	console.log(turn_in.innerHtml);
-	var letter = "W" ;
-		if(playernum == 1){
-			letter = "X";
-		}
-		if(playernum == 0){
-			letter = "O";
-		}
-		letter = letter.bold();
-		i++;
-		toggle_move();
-
-
-}
+started = true;
+turnInfo();
+//
+var bttn = document.getElementsByClassName("btn btn-primary");
+bttn[0].onclick = disabledPlay; //first button is begin play
 }
 
 /*
