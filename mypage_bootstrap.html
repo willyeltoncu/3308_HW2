@@ -71,37 +71,49 @@
         <div class="container-fluid">
     <div class="row flex-row flex-nowrap">
         <div class="col-3">
-          <div class="card" style="width: 18rem;">
+          <div id = "i1" class="card" style="width: 18rem;">
             <img class="card-img-top" src="https://marketingweek.imgix.net/content/uploads/2017/05/12103909/Coding-body-image-.jpg?auto=compress,format&q=60&w=750&h=" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">Coding</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5  class="card-title">Coding</h5>
+							<button  type="button" class="btn btn-success btn-circle btn-sm" onclick = "addCard('#i1')">+</button>
             </div>
           </div>
         </div>
         <div class="col-3">
-          <div class="card" style="width: 18rem;">
+          <div id = "i2" class="card" style="width: 18rem;">
             <img class="card-img-top" src="https://cdn.thewirecutter.com/wp-content/uploads/2018/06/electric-guitar-for-beginners-1024-8728-2-1024x510.jpg" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">Music</h5>
-
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5  class="card-title">Music</h5>
+							<button  type="button" class="btn btn-success btn-circle btn-sm" onclick = "addCard('#i2')">+</button>
             </div>
-          </div>        </div>
+          </div>
+				 </div>
         <div class="col-3">
-          <div class="card" style="width: 18rem;">
+          <div id = "i3" class="card" style="width: 18rem;">
             <img class="card-img-top" src="https://static01.nyt.com/images/2020/01/07/sports/07cfp-schedule-01/merlin_166448439_713b3e2f-b3f2-4f51-800b-ac7c6b2e9279-superJumbo.jpg?quality=90&auto=webp" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Football</h5>
+						<button  type="button" class="btn btn-success btn-circle btn-sm" onclick = "addCard('#i3')">+</button>
 
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
-          </div>        </div>
+          </div>
+
+				 </div>
         ...
     </div>
 </div>
 <a href="#" class="btn btn-info" role="button">Add Interests</a>
-
+<script>
+function addCard(id){
+	  var newCard = $('<div class="card" style="width: 18rem;"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"></p><button type="button" class="btn btn-danger pull-right" onclick = "return removeCard(event)">-</button></div></div>')
+	newCard.appendTo(id);
+	// alert("button work"?);
+}
+function removeCard(event){
+	console.log(event.target);
+//event.target
+}
+</script>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
