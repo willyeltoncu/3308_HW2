@@ -107,9 +107,11 @@
 function idMaker(){
 	return Math.floor(Math.random() * 101);
 }
+
+
 function addCard(id){
-	var newID = idMaker(); //returns random number 0-100 
-	var idString = '<div class="card" id ="' + String(newID) + '"style="width: 18rem;"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"></p><button type="button" class="btn btn-danger pull-right" onclick = "removeCard(' + String(newID) + ')">-</button></div></div>';
+	var newID = idMaker(); //returns random number 0-100
+	var idString = '<div class="card" id ="' + String(newID) + '"style="width: 18rem;"><img class="card-img-top" src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-articleLarge-v4.jpg?quality=75&auto=webp&disable=upscale"<div class="card-body"><h5 class="card-title"></h5><p class="card-text"></p><button type="button" class="btn btn-danger pull-right" onclick = "removeCard(' + String(newID) + ')">-</button></div></div>';
 	console.log(idString);
 	  var newCard = $(idString);
 	newCard.appendTo(id);
