@@ -104,13 +104,21 @@
 </div>
 <a href="#" class="btn btn-info" role="button">Add Interests</a>
 <script>
+function idMaker(){
+	return Math.floor(Math.random() * 101);
+}
 function addCard(id){
-	  var newCard = $('<div class="card" style="width: 18rem;"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"></p><button type="button" class="btn btn-danger pull-right" onclick = "return removeCard(event)">-</button></div></div>')
+	var newID = idMaker(); //returns random number 0-100 
+	var idString = '<div class="card" id ="' + String(newID) + '"style="width: 18rem;"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"></p><button type="button" class="btn btn-danger pull-right" onclick = "removeCard(' + String(newID) + ')">-</button></div></div>';
+	console.log(idString);
+	  var newCard = $(idString);
 	newCard.appendTo(id);
 	// alert("button work"?);
 }
-function removeCard(event){
-	console.log(event.target);
+function removeCard(id){
+	document.getElementById(id).remove();
+		console.log(id);
+
 //event.target
 }
 </script>
